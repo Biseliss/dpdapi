@@ -1,5 +1,5 @@
 *__pycache__
 *.db
 .venv
-app/configs/*.json
+/configs/*.json
 uploads/
