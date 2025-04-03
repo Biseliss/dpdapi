@@ -1,0 +1,9 @@
+{
+    // mysql+pymysql, sqlite, etc.
+    "db_type": "sqlite",
+    "user": "",
+    "password": "",
+    "host": "",
+    "port": "",
+    "db_name": ""
+}
