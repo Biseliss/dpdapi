@@ -70,11 +70,15 @@ def delete_recipe(post_id: int,
     post = db.query(models.Post).filter(models.Post.id == post_id).first()
     if not post:
         raise HTTPException(status_code=404, detail="Post not found")
-    if post.user_id != user_id:
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    if post.user_id != user_id and not user.is_admin:
         raise HTTPException(status_code=403, detail="Access denied")
     db.delete(post)
     db.commit()
     return {"detail": "Post deleted"}
+
 
 @router.post("/rate_post")
 def rate_post(data: schemas.RatePostRequest,
